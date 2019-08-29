@@ -11,20 +11,16 @@ public class Recursion {
      */
     public void reverseString(char[] s) {
         int len = s.length;
-        if(s!=null && len>0){
-            System.out.print("[ ");
-            reversing(s,len);
-        }else{
-            System.out.println("[]");
+        if(s!=null && len>1){
+            helper(0,s);
         }
     }
-
-    private void reversing(char[] s, int len) {
-        if(len>1) {
-            System.out.print(s[len - 1]+" ");
-            reversing(s, len - 1);
-        }{
-            System.out.println("]");
+    private void helper(int index,char[] s){
+        if(index < s.length/2){
+            char flag = s[index];
+            s[index] = s[s.length-1-index];
+            s[s.length-1-index] = flag;
+            helper(index+1,s);
         }
     }
 }
