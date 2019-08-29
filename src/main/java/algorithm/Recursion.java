@@ -193,4 +193,55 @@ public class Recursion {
        return dp[n];
     }
 
+    /**Binets方法，以类似于矩阵乘法计算斐波那契数列的方式计算，只是与斐波那契数列初始值不同
+    public int climbStairs_fa(int n) {
+        int[][] q = {{1, 1}, {1, 0}};
+        int[][] res = pow(q, n);
+        return res[0][0];
+    }
+
+    /**
+     * 矩阵幂次计算
+     * @param a
+     * @param n
+     * @return
+     */
+    public int[][] pow(int[][] a, int n) {
+        int[][] ret = {{1, 0}, {0, 1}};
+        while (n > 0) {
+            if ((n & 1) == 1) {
+                ret = multiply(ret, a);
+            }
+            n >>= 1;
+            a = multiply(a, a);
+        }
+        return ret;
+    }
+
+    /**
+     * 矩阵乘法
+     * @param a
+     * @param b
+     * @return
+     */
+    public int[][] multiply(int[][] a, int[][] b) {
+        int[][] c = new int[2][2];
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 2; j++) {
+                c[i][j] = a[i][0] * b[0][j] + a[i][1] * b[1][j];
+            }
+        }
+        return c;
+    }
+
+    /**
+     * 以斐波那契公式解
+     * @param n
+     * @return
+     */
+    public int climbStairs_math(int n) {
+        double sqrt5=Math.sqrt(5);
+        double fibn=Math.pow((1+sqrt5)/2,n+1)-Math.pow((1-sqrt5)/2,n+1);
+        return (int)(fibn/sqrt5);
+    }
 }
